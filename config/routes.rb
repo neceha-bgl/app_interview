@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  use_doorkeeper
+
   resources :users do
     member do
       get :following, :followers
