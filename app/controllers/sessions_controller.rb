@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    session[:return_to] = params[:return_to] if params[:return_to]
   end
   
   def create
