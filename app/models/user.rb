@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
   
+  def to_api
+    as_json(only: [:id, :email, :name])
+  end
+
   private
   def create_remember_token
     self.remember_token=SecureRandom.urlsafe_base64

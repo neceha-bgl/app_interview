@@ -1,6 +1,12 @@
 SampleApp::Application.routes.draw do
   use_doorkeeper
 
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1 do
+      match 'user', to: 'users#show'
+    end
+  end
+
   resources :users do
     member do
       get :following, :followers
