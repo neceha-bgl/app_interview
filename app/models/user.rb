@@ -10,6 +10,9 @@
 #
 
 class User < ActiveRecord::Base
+  include RankedModel
+  ranks :row_order
+
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
   

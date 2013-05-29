@@ -59,6 +59,7 @@ group :production do
 end
 
 gem 'doorkeeper'
+gem 'ranked-model'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
