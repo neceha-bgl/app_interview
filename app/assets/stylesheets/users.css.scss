@@ -1,3 +1,14 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#users h4 {
+  cursor: move;
+  background: #333;
+  color: #999;
+  margin: 0px;
+  padding: 5px;
+}
+.thumbnail {
+  background: #EEE; //#D3D3D3; 
+}

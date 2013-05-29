@@ -3,8 +3,13 @@
 
 <%= will_paginate%>
 
-<ul class="users">
+<div class="row">
+  <ul id="users" data-update-url="<%= sort_users_url %>" class="sortable_list thumbnails">
 		<%= render @users%>
-</ul>
+  </ul>
+</div>
 
 <%= will_paginate%>
+<% content_for :foot do %>
+	<%= javascript_include_tag "sortable_process" %>
+<% end %>
