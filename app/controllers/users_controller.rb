@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, 
-    :following, :followers]
+    :following, :followers, :sort]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
   
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users=User.paginate(page: params[:page])
+    @users=User.rank(:row_order).paginate(page: params[:page])
   end
   
   def edit
@@ -61,6 +61,20 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @users=@user.followers.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def sort 
+    user = User.find(params[:id])
+    if params[:next]
+      next_user = User.find(params[:next])
+      row_order_position = next_user.row_order 
+    else
+      next_user = User.find(params[:last])
+      row_order_position = next_user.row_order + 1
+    end
+    user.update_attribute :row_order, row_order_position 
+    user.save
+    render nothing: true
   end
 
   private
